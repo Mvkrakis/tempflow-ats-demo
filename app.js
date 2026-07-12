@@ -1,0 +1,21 @@
+const criteria = [
+  ['IT troubleshooting', 'Detects support, diagnosis, repair, and problem-solving signals.'],
+  ['Windows and productivity tools', 'Looks for Windows, Microsoft 365, Outlook, Teams, and similar tools.'],
+  ['Hardware and device setup', 'Recognises laptops, desktops, printers, peripherals, and PC builds.'],
+  ['Networking fundamentals', 'Checks for Wi-Fi, DNS, VPN, routers, TCP/IP, and connectivity.'],
+  ['Helpdesk and user support', 'Recognises user support, ticketing, remote support, and service desks.'],
+  ['IT learning, courses, or projects', 'Values bootcamps, certificates, coursework, home labs, GitHub, and projects.'],
+  ['Right to work', 'Follow-up only'], ['Availability', 'Follow-up only']
+];
+const applicants = [
+  { name: 'Alex Morgan', email: 'alex.morgan@example.test', date: '12 Jul 2026', score: 83, status: 'Forwarded automatically', cv: 'Alex_Morgan_CV.pdf', matched: [['IT troubleshooting', 'troubleshooting, technical support, repair'], ['Windows and productivity tools', 'Windows, Microsoft 365, Teams'], ['Hardware and device setup', 'laptop, printer, PC build'], ['Networking fundamentals', 'Wi-Fi, DNS, VPN'], ['IT learning, courses, or projects', 'CompTIA A+, home lab, GitHub project']], missing: [['Helpdesk and user support', 'Confirm ticketing or end-user support experience.'], ['Right to work', 'Confirm documentation before placement.'], ['Availability', 'Confirm preferred working pattern.']] },
+  { name: 'Jordan Lee', email: 'jordan.lee@example.test', date: '11 Jul 2026', score: 67, status: 'Forwarded automatically', cv: 'Jordan_Lee_CV.docx', matched: [['IT troubleshooting', 'diagnose, problem solving'], ['Hardware and device setup', 'desktop, hardware'], ['Networking fundamentals', 'router, connectivity'], ['IT learning, courses, or projects', 'IT course, personal project']], missing: [['Windows and productivity tools', 'Ask about Windows and Microsoft 365 familiarity.'], ['Helpdesk and user support', 'Ask about user support or ticket documentation.']] },
+  { name: 'Sam Patel', email: 'sam.patel@example.test', date: '10 Jul 2026', score: 33, status: 'Below forwarding threshold', cv: 'Sam_Patel_CV.pdf', matched: [['IT learning, courses, or projects', 'bootcamp, portfolio']], missing: [['IT troubleshooting', 'Ask for an example of a technical issue they resolved.'], ['Windows and productivity tools', 'Ask about Windows or productivity tools.'], ['Hardware and device setup', 'Ask about device setup or repair.'], ['Networking fundamentals', 'Ask about Wi-Fi, router, or VPN basics.'], ['Helpdesk and user support', 'Ask about supporting non-technical users.']] }
+];
+const $ = (selector) => document.querySelector(selector);
+$('#criteria').innerHTML = criteria.map(([name, description], index) => `<div class="criterion"><b>${name}</b><span class="${index > 5 ? 'followup' : ''}">${index > 5 ? 'Follow-up only' : 'Automated signal'}</span><small>${description}</small></div>`).join('');
+$('#applicants').innerHTML = applicants.map((applicant, index) => `<button class="applicant" data-index="${index}"><span class="avatar">${applicant.name.split(' ').map((word) => word[0]).join('')}</span><span><b>${applicant.name}</b><small>${applicant.email} · ${applicant.date}</small></span><span class="applicant-score"><b>${applicant.score}%</b><small class="${applicant.score >= 50 ? 'pass' : 'review'}">${applicant.status}</small></span></button>`).join('');
+function list(items) { return items.map(([name, detail]) => `<p><b>${name}</b>${detail}</p>`).join(''); }
+function show(applicant) { $('#detail').innerHTML = `<p class="eyebrow">FICTIONAL APPLICANT REVIEW</p><h2>${applicant.name}</h2><p class="detail-meta">${applicant.email} · Submitted ${applicant.date}</p><div class="score"><strong>${applicant.score}%</strong><span>${applicant.status}</span></div><div class="cv"><b>Sample CV: ${applicant.cv}</b><small>CV viewing is disabled in this public demo.</small></div><h3>Matched signals</h3><div class="list">${list(applicant.matched)}</div><h3>Follow-up suggestions</h3><div class="list">${list(applicant.missing)}</div>`; $('#detail-dialog').showModal(); }
+document.querySelectorAll('.applicant').forEach((button) => button.addEventListener('click', () => show(applicants[button.dataset.index])));
+$('#close').addEventListener('click', () => $('#detail-dialog').close());

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A privacy-safe, interactive ATS portfolio demo.">
+  <title>TempFlow ATS — Portfolio Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><span>TF</span> TempFlow <small>ATS DEMO</small></div>
+    <p>Portfolio showcase · no real applicant data</p>
+  </header>
+  <main>
+    <section class="notice"><b>Safe demo environment</b><span>All names, CVs, scores, and analytics are fictional. Uploads and email delivery are disabled.</span></section>
+    <section class="hero">
+      <div><p class="eyebrow">JUNIOR IT TECHNICIAN ASSOCIATE</p><h1>Explainable automated screening, designed for entry-level IT talent.</h1><p>TempFlow extracts job-relevant signals such as troubleshooting, coursework, projects, networking, and helpdesk experience—then gives hiring teams a transparent review view.</p></div>
+      <aside><p class="eyebrow">FORWARDING RULE</p><strong>50%</strong><p>minimum technical-signal match.</p><hr><p>6 scored signals · 2 follow-up checks</p></aside>
+    </section>
+    <section class="metrics">
+      <article><span>Applications</span><strong>24</strong></article><article><span>Forwarded</span><strong>11</strong></article><article><span>Forward rate</span><strong>46%</strong></article><article><span>Average match</span><strong>54%</strong></article>
+    </section>
+    <section class="dashboard">
+      <article class="panel"><p class="eyebrow">SCREENING POLICY</p><h2>How candidates are assessed</h2><div id="criteria"></div><p class="footnote">Right-to-work and availability are follow-up items, not automated score blockers.</p></article>
+      <article class="panel"><div class="panel-head"><div><p class="eyebrow">FICTIONAL APPLICANTS</p><h2>Application log</h2></div><span class="pill">Click an applicant</span></div><div id="applicants"></div></article>
+    </section>
+    <section class="architecture"><p class="eyebrow">PRODUCTION ARCHITECTURE</p><h2>What the full private system does</h2><div><span>Applicant CV</span><i>→</i><span>Text extraction</span><i>→</i><span>Explainable scoring</span><i>→</i><span>Encrypted storage</span><i>→</i><span>Hiring email + dashboard</span></div><p>The production implementation is kept separate from this public demo and uses private secrets, authenticated access, encrypted files, and a database.</p></section>
+  </main>
+  <dialog id="detail-dialog"><button id="close" aria-label="Close applicant details">×</button><div id="detail"></div></dialog>
+  <footer>Built as a portfolio project. <a href="https://github.com/" target="_blank" rel="noopener">View the source on GitHub</a></footer>
+  <script src="app.js"></script>
+</body>
+</html>
